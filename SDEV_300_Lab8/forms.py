@@ -2,9 +2,10 @@
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField, PasswordField, SubmitField, validators
 
-def IsNotCommonPW(form, field):
+def not_common_pw(form, field):
     '''Checks if password is in list of common passwords'''
-    common_pw_set = set(line.strip() for line in open("CommonPassword.txt"))
+    with open("CommonPassword.txt", "r", encoding="utf-8") as file_read:
+        common_pw_set = set(line.strip() for line in file_read)
     if field.data in common_pw_set:
         raise validators.ValidationError("Password too common, please try again.")
 
@@ -49,7 +50,7 @@ class PasswordUpdateForm(FlaskForm):
             message="Password must be at least 12 characters "
             "and contain at least 1 lowercase letter, 1 uppercase letter, 1 digit,"
             " and 1 special character"),
-        IsNotCommonPW,
+        not_common_pw,
         # passwords must match
         validators.EqualTo("password2", message="Passwords must match")
     ])

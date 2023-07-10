@@ -13,6 +13,7 @@ class User(UserMixin):
         self.password = None
 
     def set_password(self,password):
+        '''Sets encrypted password'''
         self.password = sha256_crypt.hash(password)
 
 @login_manager.user_loader

@@ -1,6 +1,9 @@
 '''Handles routing and runs program'''
 from datetime import datetime
-import os, logging, fileinput, sys
+import os
+import logging
+import fileinput
+import sys
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, login_required, current_user, logout_user
 from passlib.hash import sha256_crypt
@@ -96,7 +99,7 @@ def login():
                 # if none of the username/password combos match up to user entry, try again
                 flash("Sorry, login info incorrect. Please try again.")
                 # log IP info in logger
-                logger.info("IP: {}".format(request.remote_addr))
+                logger.info("IP: %s", request.remote_addr)
                 return redirect(url_for("login")) # redirect to login
         else:
             flash("You are the very first user! Please register now.")
