@@ -1,0 +1,23 @@
+<!-- Extends base template because user needs to be logged in already -->
+{% extends "base.html" %}
+{% block content %}
+    <h2>Reset Password</h2>
+    <form action="{{ url_for('pwupdate') }}" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
+            <span style="color: red;"><li>{{ error }}</li></span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password2.label }}<br>
+            {{ form.password2(size=32) }}<br>
+            {% for error in form.password2.errors %}
+            <span style="color: red;"><li>{{ error }}</li></span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

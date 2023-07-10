@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/static/css/page_style.css" />
+    {% if title %}
+      <title>{{ title }} - Keith's Cats Page</title>
+      {% else %}
+      <title>Welcome to Keith's Cats Page</title>
+    {% endif %}
+  </head>
+  <body>
+    <h1>Welcome to Keith's Cats Page</h1>
+    <div>
+      <!-- Full menu since user is logged in -->
+      Navigation:
+      <ul>
+        <li><a href="/">Index</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <li><a href="{{ url_for('registration') }}">Registration</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        <li><a href="{{ url_for('pwupdate') }}">Update Password</a></li>
+        <li><a href="{{ url_for('userhome') }}">User Home</a></li>
+        <li><a href="{{ url_for('zebra') }}">Zebra</a></li>
+        <li><a href="{{ url_for('tater') }}">Tater</a></li>
+        <li><a href="{{ url_for('foodstable') }}">Cat Food Ranking</a></li>
+      </ul>
+    </div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <!-- Child block content goes here -->
+    <div>{% block content %}{% endblock %}</div>
+    <!-- Child block content ends -->
+    <footer id="footer">
+        {% block footer %}
+        &copy; Copyright 2023 by Keith Lee
+        <p>The date and time you loaded this website: {{ dt_now }}</p>
+        {% endblock %}
+    </footer>
+  </body>
+</html>

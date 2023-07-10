@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/static/css/page_style.css" />
+    <title>Keith's Cats Page - Guest View</title>
+  </head>
+  <body>
+    <h1>Keith's Cats Page - Guest View</h1>
+    <div>
+      <!-- Partial menu since user not logged in -->
+      Navigation:
+      <ul>
+        <li><a href="/">Index</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+        <li><a href="{{ url_for('registration')}}">Registration</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      </ul>
+    </div>
+    <div>
+      <p>Please <a href="{{ url_for('login') }}">log in</a> or <a href="{{ url_for('registration')}}">register</a> to see more about my two cats!</p>
+      <p>Also, <a href="https://www.youtube.com/watch?v=ksnt3kBR9iM">here</a> is a very funny cat video.</p>
+    </div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <!-- Child block content goes here -->
+    <div>{% block content %}{% endblock %}</div>
+    <!-- Child block content ends -->
+      <footer id="footer">
+          {% block footer %}
+          &copy; Copyright 2023 by Keith Lee
+          <p>The date and time you loaded this website: {{ dt_now }}</p>
+          {% endblock %}
+      </footer>
+  </body>
+</html>

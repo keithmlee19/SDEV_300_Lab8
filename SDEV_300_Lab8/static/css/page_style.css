@@ -1,0 +1,35 @@
+body { /* Uses flexbox to stretch body to cover the area not covered by the footer */
+    background-color: aliceblue;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+h3 {
+    font-style: italic;
+}
+
+table {
+    border-collapse: collapse; /* Avoids double borders */
+    width: 50%;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td, th {
+    border: 1px solid;
+    text-align: left;
+    padding: 8px;
+}
+
+footer { /* Essentially pushes footer to bottom of page */
+    margin-top: auto;
+    font-size: 12px;
+}
